@@ -1,0 +1,40 @@
+#! python3
+
+import pyperclip,re
+
+phonePattern = re.compile(r'''(
+(\d){3} #3 digits
+(-|\s)  #Separator
+(\d){3} #3 digits
+(-|\s)  #Separator
+(\d){3}$ #3 digits
+)''',re.VERBOSE)
+
+mailpattern = re.compile(r'''(
+([\w.+%]+)  #username can be alphanumeric
+(@)       # it should be followed by @     
+([A-Za-z]+)  #domain name
+(\.)     #a .
+([A-Za-z]{2,4}) #top level domain
+)''',re.VERBOSE)
+
+text = str(pyperclip.paste())
+
+matches = []
+
+for groups in phonePattern.findall(text):  # checks for phonenumbers
+    matches.append(groups[0])
+
+for groups in mailpattern.findall(text): #checks for mails
+    matches.append(groups[0])
+
+
+
+if len(matches) > 0:                    
+    pyperclip.copy(''.join(matches))
+    print('Copied Successfully')                #displays the matches
+    print('\n'.join(matches))
+else:
+    print('No mail and phone numbers found')
+    
+    
