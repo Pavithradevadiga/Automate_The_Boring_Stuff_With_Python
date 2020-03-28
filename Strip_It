@@ -1,0 +1,13 @@
+import re
+
+def stripit(word,rem=''):
+    if rem == '':
+        s = re.sub(r'\s',r'',word)
+        s = re.sub(r'\s$',r'',s)
+        print(s)
+    else:
+        s = re.sub(rem,r' ',word)
+        print(s)
+
+stripit(input(),input())
+    
