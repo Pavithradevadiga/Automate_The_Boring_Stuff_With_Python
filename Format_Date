@@ -1,0 +1,23 @@
+import pyperclip,re
+
+pattern = re.compile(r'''(    #Regex object for date
+\d{,2}\|\d{,2}\|\d{2,4}|
+\d{,2}-\d{,2}-\d{2,4}|
+\d{,2}/\d{,2}/\d{2,4}
+)''',re.VERBOSE)
+
+text = str(pyperclip.paste())
+
+
+mo = pattern.findall(text)                 #finds the dates and makes a list
+for dates in mo:
+    datepattern = re.compile(r'-|/|\\')
+    r = datepattern.sub(r'-',dates)
+    datepattern1 = re.compile(r'(\d{,2})-(\d{,2})-(\d{,4})')
+    r1 = datepattern1.search(r)
+    r2 = r1.group(3)[-2:]
+    print("{}-{}-{}".format(r1.group(1),r1.group(2),r2))
+
+    
+    
+
