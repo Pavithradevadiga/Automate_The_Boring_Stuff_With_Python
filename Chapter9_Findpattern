@@ -1,0 +1,8 @@
+import re
+
+afile = open('madlibs.txt')
+afilecontent = afile.read()
+regexpattern = re.compile(input())
+findpattern = regexpattern.findall(afilecontent)
+print(findpattern)
+afile.close()
