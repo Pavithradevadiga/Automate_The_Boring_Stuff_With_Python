@@ -1,0 +1,23 @@
+import re
+
+adj = input('Enter a Adjective:\t')
+noun = input('Enter a Noun:\t')
+verb = input('Enter a verb:\t')
+adverb = input('Enter a Adverb:\t')
+
+
+txtfile = open('madlibs.txt')
+readfiles = txtfile.readlines()
+modified = ''
+#result = re.sub('abc','',readfiles)
+for lines in readfiles:
+    result = re.sub('ADJECTIVE',adj,lines)
+    result = re.sub('NOUN',noun,result)
+    result = re.sub('ADVERB',adverb,result)
+    result = re.sub('VERB',verb,result)
+    modified += result
+print(modified)
+modifiedfile = open('madlibs11.txt','w')
+modifiedfile.write(modified)
+modifiedfile.close()
+txtfile.close()
