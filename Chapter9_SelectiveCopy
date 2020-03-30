@@ -1,0 +1,16 @@
+import os,shutil
+
+def moveFilesExt(folder,ext):
+    os.makedirs(os.path.join(folder,ext))
+    for folder,subfolders,files in os.walk(folder):
+        print(folder)
+        for file in files:
+           if file.endswith(ext) and os.path.join(folder,file) and os.path.join(folder,ext):
+               shutil.copy(os.path.join(folder,file),os.path.join(folder,ext))
+               print(os.path.join(folder,file),os.path.join(folder,ext))
+        print('Done')       
+               
+
+ext = input('Please enter the extension: ')
+Folder = input('Please enter the Complete path of the file")
+moveFilesExt(Folder,ext)
